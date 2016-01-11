@@ -62,5 +62,13 @@ window.onload = function() {
   var ctx = canvas.getContext('2d') ;
   ctx.drawImage(srcimg, 0, 0) ;
 
+  // ...we'll take our initial color from pixel at (175,175)
+  var imgdata = ctx.getImageData(0, 0, canvas.width, canvas.height) ;
+  var pixels = imgdata.data ;
+  var pixoff = 175*imgdata.width + 175 ;
+  colors[0][0] = pixels[4*pixoff + 0] ;
+  colors[0][1] = pixels[4*pixoff + 1] ;
+  colors[0][2] = pixels[4*pixoff + 2] ;
+
   window.setTimeout(cycleColors, tosecs, canvas, ctx, 0) ;
 } ;
